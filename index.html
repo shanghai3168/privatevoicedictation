@@ -85,12 +85,12 @@
                 "06-任意应用即说即写-2880x1800.png"
             ],
             en: [
-                "01-fully-offline.png",
-                "02-four-local-models.png",
-                "03-personal-lexicon.png",
-                "04-history-csv.png",
-                "05-privacy-first.png",
-                "06-any-app-input.png"
+                "01-Fully-Offline-Voice-Dictation-2880x1800.png",
+                "02-Four-Local-Models-2880x1800.png",
+                "03-Personal-Dictionary-2880x1800.png",
+                "04-History-and-CSV-Corrections-2880x1800.png",
+                "05-Privacy-First-2880x1800.png",
+                "06-Dictate-in-Any-App-2880x1800.png"
             ]
         };
 
@@ -114,11 +114,12 @@
             container.innerHTML = '';
             
             const currentImages = images[currentLang];
+            const imageDir = currentLang === 'zh' ? 'images' : 'image-en';
             
             currentImages.forEach(src => {
                 const div = document.createElement('div');
                 div.innerHTML = `
-                    <img src="image-en/${src}" 
+                    <img src="${imageDir}/${src}" 
                          alt="Screenshot" 
                          class="screenshot rounded-3xl shadow-2xl w-full">
                 `;
