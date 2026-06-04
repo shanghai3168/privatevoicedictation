@@ -7,70 +7,47 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        body { font-family: 'Inter', 'Noto Sans SC', system-ui, sans-serif; }
-        .hero { background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%); }
+        body { font-family: system-ui, -apple-system, 'Noto Sans SC', sans-serif; }
         .screenshot { transition: all 0.4s ease; }
-        .screenshot:hover { transform: scale(1.03); box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25); }
+        .screenshot:hover { transform: scale(1.02); box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25); }
     </style>
 </head>
 <body class="bg-slate-50">
 
-    <!-- Navbar -->
+    <!-- 顶部导航 -->
     <nav class="bg-white border-b sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
             <div class="flex items-center gap-3">
-                <img src="https://你的图标地址" class="w-9 h-9" alt="图标">
+                <div class="w-10 h-10 bg-blue-600 rounded-2xl flex items-center justify-center text-white">
+                    <i class="fa-solid fa-microphone text-2xl"></i>
+                </div>
                 <div>
-                    <span class="font-bold text-2xl">私语输入法</span>
-                    <span class="text-slate-500 text-sm ml-1">PrivateVoice Dictation</span>
+                    <span class="font-bold text-2xl tracking-tight">私语输入法</span>
+                    <span class="text-slate-500 text-sm">PrivateVoice Dictation</span>
                 </div>
             </div>
-            <div class="flex items-center gap-8 text-sm font-medium">
-                <a href="#features" class="hover:text-blue-600">功能亮点</a>
-                <a href="#screenshots" class="hover:text-blue-600">界面展示</a>
-                <a href="#privacy" class="hover:text-blue-600">隐私保护</a>
-                <a href="https://apps.apple.com/app/privatevoice-dictation/id6776681824" 
-                   class="bg-blue-600 text-white px-6 py-2.5 rounded-2xl font-semibold hover:bg-blue-700">
-                    Mac App Store 下载
-                </a>
-            </div>
+            <a href="https://apps.apple.com/app/privatevoice-dictation/id6776681824" 
+               class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-2xl font-semibold">
+                Mac App Store 下载
+            </a>
         </div>
     </nav>
 
-    <!-- Hero -->
-    <section class="hero py-20">
-        <div class="max-w-6xl mx-auto px-6 text-center">
-            <h1 class="text-6xl font-bold tracking-tight mb-6">
-                按住说话，<span class="text-blue-600">松开即写</span>
-            </h1>
-            <p class="text-2xl text-slate-600 mb-10 max-w-3xl mx-auto">
-                完全离线的 macOS 语音输入工具<br>
-                数据永不出设备 · 四大本地模型 · 智能词库自适应
-            </p>
-            <a href="https://apps.apple.com/app/privatevoice-dictation/id6776681824" 
-               class="inline-flex items-center gap-3 bg-blue-600 text-white text-xl font-semibold px-10 py-4 rounded-3xl hover:bg-blue-700">
-                <i class="fa-brands fa-apple text-3xl"></i>
-                立即在 Mac App Store 免费下载
-            </a>
-        </div>
-    </section>
+    <!-- 标题 -->
+    <div class="max-w-6xl mx-auto px-6 pt-12 pb-8 text-center">
+        <h1 class="text-5xl font-bold mb-4">私语输入法</h1>
+        <p class="text-xl text-slate-600">完全离线 · 隐私优先 · 智能语音输入</p>
+    </div>
 
-    <!-- Screenshots Showcase -->
-    <section id="screenshots" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-16">产品界面展示</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                <img src="你的图片链接1" class="screenshot rounded-3xl shadow-xl" alt="完全离线">
-                <img src="你的图片链接2" class="screenshot rounded-3xl shadow-xl" alt="四大模型">
-                <img src="你的图片链接3" class="screenshot rounded-3xl shadow-xl" alt="专属词库">
-                <img src="你的图片链接4" class="screenshot rounded-3xl shadow-xl" alt="历史与CSV">
-                <img src="你的图片链接5" class="screenshot rounded-3xl shadow-xl" alt="任意应用即说即写">
-            </div>
-        </div>
-    </section>
-
-    <!-- 其他功能区块可继续添加... -->
+    <!-- 图片展示 -->
+    <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 gap-12 pb-20">
+        <img src="01-完全离线语音输入-2880x1800.png" alt="完全离线" class="screenshot rounded-3xl shadow-xl">
+        <img src="02-四大本地模型-2880x1800.png" alt="四大模型" class="screenshot rounded-3xl shadow-xl">
+        <img src="03-专属词库自适应-2880x1800.png" alt="专属词库" class="screenshot rounded-3xl shadow-xl">
+        <img src="04-历史与CSV勘误-2880x1800.png" alt="历史与CSV" class="screenshot rounded-3xl shadow-xl">
+        <img src="05-隐私优先-2880x1800.png" alt="隐私优先" class="screenshot rounded-3xl shadow-xl">
+        <img src="06-任意应用即说即写-2880x1800.png" alt="任意应用输入" class="screenshot rounded-3xl shadow-xl">
+    </div>
 
 </body>
 </html>
