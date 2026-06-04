@@ -3,51 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>私语输入法 - 完全离线 · 隐私优先的 macOS 语音输入</title>
+    <title>私语输入法 - PrivateVoice Dictation</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         body { font-family: system-ui, -apple-system, 'Noto Sans SC', sans-serif; }
         .screenshot { transition: all 0.4s ease; }
-        .screenshot:hover { transform: scale(1.02); box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25); }
+        .screenshot:hover { transform: scale(1.03); box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25); }
     </style>
 </head>
 <body class="bg-slate-50">
 
-    <!-- 顶部导航 -->
+    <!-- Navbar -->
     <nav class="bg-white border-b sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
             <div class="flex items-center gap-3">
                 <div class="w-10 h-10 bg-blue-600 rounded-2xl flex items-center justify-center text-white">
                     <i class="fa-solid fa-microphone text-2xl"></i>
                 </div>
-                <div>
-                    <span class="font-bold text-2xl tracking-tight">私语输入法</span>
-                    <span class="text-slate-500 text-sm">PrivateVoice Dictation</span>
-                </div>
+                <span class="font-bold text-2xl">私语输入法</span>
             </div>
-            <a href="https://apps.apple.com/app/privatevoice-dictation/id6776681824" 
-               class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-2xl font-semibold">
-                Mac App Store 下载
-            </a>
+            
+            <!-- Language Switch -->
+            <div class="flex items-center gap-4">
+                <button onclick="switchLanguage()" 
+                        class="flex items-center gap-2 px-4 py-2 bg-slate-100 hover:bg-slate-200 rounded-2xl font-medium transition-colors">
+                    <span id="lang-text">English</span>
+                    <i class="fa-solid fa-globe"></i>
+                </button>
+                
+                <a href="https://apps.apple.com/app/privatevoice-dictation/id6776681824" 
+                   class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-2xl font-semibold">
+                    Download on Mac App Store
+                </a>
+            </div>
         </div>
     </nav>
 
-    <!-- 标题 -->
-    <div class="max-w-6xl mx-auto px-6 pt-12 pb-8 text-center">
-        <h1 class="text-5xl font-bold mb-4">私语输入法</h1>
-        <p class="text-xl text-slate-600">完全离线 · 隐私优先 · 智能语音输入</p>
-    </div>
+    <!-- Hero -->
+    <section class="max-w-6xl mx-auto px-6 pt-16 pb-12 text-center">
+        <h1 id="hero-title" class="text-5xl font-bold mb-6">完全离线 · 隐私优先的 macOS 语音输入</h1>
+        <p id="hero-subtitle" class="text-xl text-slate-600 max-w-3xl mx-auto">
+            按住快捷键说话，松开即输入。数据永不出设备。
+        </p>
+    </section>
 
-    <!-- 图片展示 -->
-    <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 gap-12 pb-20">
-        <img src="01-完全离线语音输入-2880x1800.png" alt="完全离线" class="screenshot rounded-3xl shadow-xl">
-        <img src="02-四大本地模型-2880x1800.png" alt="四大模型" class="screenshot rounded-3xl shadow-xl">
-        <img src="03-专属词库自适应-2880x1800.png" alt="专属词库" class="screenshot rounded-3xl shadow-xl">
-        <img src="04-历史与CSV勘误-2880x1800.png" alt="历史与CSV" class="screenshot rounded-3xl shadow-xl">
-        <img src="05-隐私优先-2880x1800.png" alt="隐私优先" class="screenshot rounded-3xl shadow-xl">
-        <img src="06-任意应用即说即写-2880x1800.png" alt="任意应用输入" class="screenshot rounded-3xl shadow-xl">
-    </div>
+    <!-- Screenshots -->
+    <section class="max-w-6xl mx-auto px-6 pb-20">
+        <h2 id="screenshot-title" class="text-3xl font-bold text-center mb-12">产品界面展示</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10" id="screenshots-container">
+            <!-- Will be filled by JavaScript -->
+        </div>
+    </section>
+
+    <script>
+        // 双语数据
+        const content = {
+            zh: {
+                title: "完全离线 · 隐私优先的 macOS 语音输入",
+                subtitle: "按住快捷键说话，松开即输入。数据永不出设备。",
+                screenshotTitle: "产品界面展示",
+                langText: "English"
+            },
+            en: {
+                title: "Fully Offline · Privacy-First Voice Dictation for macOS",
+                subtitle: "Hold the hotkey to speak, release to input. Your data never leaves your device.",
+                screenshotTitle: "App Screenshots",
+                langText: "中文"
+            }
+        };
+
+        // 中英文图片列表
+        const images = {
+            zh: [
+                "01-完全离线语音输入-2880x1800.png",
+                "02-四大本地模型-2880x1800.png",
+                "03-专属词库自适应-2880x1800.png",
+                "04-历史与CSV勘误-2880x1800.png",
+                "05-隐私优先-2880x1800.png",
+                "06-任意应用即说即写-2880x1800.png"
+            ],
+            en: [
+                "01-fully-offline.png",
+                "02-four-local-models.png",
+                "03-personal-lexicon.png",
+                "04-history-csv.png",
+                "05-privacy-first.png",
+                "06-any-app-input.png"
+            ]
+        };
+
+        let currentLang = 'zh';
+
+        function switchLanguage() {
+            currentLang = currentLang === 'zh' ? 'en' : 'zh';
+            
+            // 更新文字
+            document.getElementById('hero-title').textContent = content[currentLang].title;
+            document.getElementById('hero-subtitle').textContent = content[currentLang].subtitle;
+            document.getElementById('screenshot-title').textContent = content[currentLang].screenshotTitle;
+            document.getElementById('lang-text').textContent = content[currentLang].langText;
+            
+            // 更新图片
+            renderScreenshots();
+        }
+
+        function renderScreenshots() {
+            const container = document.getElementById('screenshots-container');
+            container.innerHTML = '';
+            
+            const currentImages = images[currentLang];
+            
+            currentImages.forEach(src => {
+                const div = document.createElement('div');
+                div.innerHTML = `
+                    <img src="image-en/${src}" 
+                         alt="Screenshot" 
+                         class="screenshot rounded-3xl shadow-2xl w-full">
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        // 初始化
+        renderScreenshots();
+    </script>
 
 </body>
 </html>
