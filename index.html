@@ -30,8 +30,7 @@
             </div>
             
             <div class="flex items-center gap-4">
-                <button onclick="switchLanguage()" 
-                        class="flex items-center gap-2 px-5 py-2.5 bg-slate-100 hover:bg-slate-200 rounded-2xl font-medium transition-colors">
+                <button onclick="switchLanguage()" class="flex items-center gap-2 px-5 py-2.5 bg-slate-100 hover:bg-slate-200 rounded-2xl font-medium transition-colors">
                     <i class="fa-solid fa-globe"></i>
                     <span id="lang-text">English</span>
                 </button>
@@ -50,7 +49,7 @@
             <h1 id="hero-title" class="text-5xl md:text-6xl font-bold tracking-tighter mb-6 leading-tight">
                 完全离线 · 隐私优先的 macOS 语音输入
             </h1>
-            <p id="hero-subtitle" class="text-2xl text-slate-600 max-w-2xl mx-auto">
+            <p id="hero-subtitle" class="text-2xl text-slate-600">
                 按住快捷键说话，松开即输入。数据永不出设备。
             </p>
         </div>
@@ -59,11 +58,35 @@
     <!-- Screenshots -->
     <section class="max-w-7xl mx-auto px-6 py-8">
         <h2 id="screenshot-title" class="text-4xl font-bold text-center mb-12">产品界面展示</h2>
-        
-        <div class="space-y-20" id="screenshots-container">
-            <!-- JS 动态加载 -->
-        </div>
+        <div class="space-y-20" id="screenshots-container"></div>
     </section>
+
+    <!-- Footer with links -->
+    <footer class="bg-slate-900 text-slate-400 py-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8 mb-10">
+                <a href="https://shanghai3168.github.io/privatevoice-dictation-support/privacy.html" 
+                   class="hover:text-white transition-colors flex items-center gap-3">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span>隐私政策</span>
+                </a>
+                <a href="https://shanghai3168.github.io/privatevoice-dictation-support/support.html" 
+                   class="hover:text-white transition-colors flex items-center gap-3">
+                    <i class="fa-solid fa-circle-question"></i>
+                    <span>支持与反馈</span>
+                </a>
+                <a href="https://shanghai3168.github.io/privatevoice-dictation-support/" 
+                   class="hover:text-white transition-colors flex items-center gap-3">
+                    <i class="fa-solid fa-life-ring"></i>
+                    <span>支持中心</span>
+                </a>
+            </div>
+            
+            <div class="text-center text-sm border-t border-slate-800 pt-8">
+                © 2026 私语输入法 · 基于 VoiceSnap (MIT License)
+            </div>
+        </div>
+    </footer>
 
     <script>
         let currentLang = 'zh';
@@ -83,53 +106,44 @@
             }
         };
 
-        // 中英文图片列表（根据你仓库实际文件名）
         const screenshots = {
             zh: [
-                "06-任意应用即说即写-2880x1800.png"
-                "01-完全离线语音输入-2880x1800.png",
+                "06-任意应用即说即写-2880x1800.png",
                 "02-四大本地模型-2880x1800.png",
                 "03-专属词库自适应-2880x1800.png",
                 "04-历史与CSV勘误-2880x1800.png",
                 "05-隐私优先-2880x1800.png",
+                "01-完全离线语音输入-2880x1800.png"
             ],
             en: [
-                "06-Dictate-in-Any-App-2880x1800.png"
-                "01-Fully-Offline-Voice-Dictation-2880x1800.png",
+                "06-Dictate-in-Any-App-2880x1800.png",
                 "02-Four-Local-Models-2880x1800.png",
                 "03-Personal-Dictionary-2880x1800.png",
                 "04-History-and-CSV-Corrections-2880x1800.png",
                 "05-Privacy-First-2880x1800.png",
-            
+                "01-Fully-Offline-Voice-Dictation-2880x1800.png",
             ]
         };
 
         function renderScreenshots(lang) {
             const container = document.getElementById('screenshots-container');
             container.innerHTML = '';
-            
             const files = screenshots[lang];
             const folder = lang === 'zh' ? 'images' : 'image-en';
             
             files.forEach(filename => {
                 const div = document.createElement('div');
-                div.innerHTML = `
-                    <img src="${folder}/${filename}" 
-                         alt="界面截图" 
-                         class="screenshot">
-                `;
+                div.innerHTML = `<img src="${folder}/${filename}" alt="截图" class="screenshot">`;
                 container.appendChild(div);
             });
         }
 
         function switchLanguage() {
             currentLang = currentLang === 'zh' ? 'en' : 'zh';
-            
             document.getElementById('hero-title').textContent = content[currentLang].heroTitle;
             document.getElementById('hero-subtitle').textContent = content[currentLang].heroSubtitle;
             document.getElementById('screenshot-title').textContent = content[currentLang].screenshotTitle;
             document.getElementById('lang-text').textContent = content[currentLang].langText;
-            
             renderScreenshots(currentLang);
         }
 
