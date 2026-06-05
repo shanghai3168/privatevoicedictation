@@ -8,12 +8,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         body { font-family: system-ui, -apple-system, 'Noto Sans SC', sans-serif; }
-        .screenshot { transition: all 0.4s ease; }
-        .screenshot:hover { transform: scale(1.03); box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25); }
+        .hero { background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%); }
+        .screenshot {
+            width: 100%;
+            max-width: 1280px;
+            margin: 40px auto;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.15);
+        }
     </style>
 </head>
 <body class="bg-slate-50">
-
     <!-- Navbar -->
     <nav class="bg-white border-b sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
@@ -21,142 +26,114 @@
                 <div class="w-10 h-10 bg-blue-600 rounded-2xl flex items-center justify-center text-white">
                     <i class="fa-solid fa-microphone text-2xl"></i>
                 </div>
-                <span class="font-bold text-2xl">私语输入法</span>
+                <span class="font-bold text-2xl tracking-tight">私语输入法</span>
             </div>
             
-            <!-- Language Switch -->
             <div class="flex items-center gap-4">
                 <button onclick="switchLanguage()" 
-                        class="flex items-center gap-2 px-4 py-2 bg-slate-100 hover:bg-slate-200 rounded-2xl font-medium transition-colors">
-                    <span id="lang-text">English</span>
+                        class="flex items-center gap-2 px-5 py-2.5 bg-slate-100 hover:bg-slate-200 rounded-2xl font-medium transition-colors">
                     <i class="fa-solid fa-globe"></i>
+                    <span id="lang-text">English</span>
                 </button>
                 
                 <a href="https://apps.apple.com/app/privatevoice-dictation/id6776681824" 
                    class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-2xl font-semibold">
-                    Download on Mac App Store
+                    Mac App Store 下载
                 </a>
             </div>
         </div>
     </nav>
 
     <!-- Hero -->
-    <section class="max-w-6xl mx-auto px-6 pt-16 pb-12 text-center">
-        <h1 id="hero-title" class="text-5xl font-bold mb-6">完全离线 · 隐私优先的 macOS 语音输入</h1>
-        <p id="hero-subtitle" class="text-xl text-slate-600 max-w-3xl mx-auto">
-            按住快捷键说话，松开即输入。数据永不出设备。
-        </p>
-    </section>
-
-    <!-- Screenshots -->
-    <section class="max-w-6xl mx-auto px-6 pb-20">
-        <h2 id="screenshot-title" class="text-3xl font-bold text-center mb-12">产品界面展示</h2>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-10" id="screenshots-container">
-            <!-- Will be filled by JavaScript -->
+    <section class="hero pt-20 pb-16 text-center">
+        <div class="max-w-4xl mx-auto px-6">
+            <h1 id="hero-title" class="text-5xl md:text-6xl font-bold tracking-tighter mb-6 leading-tight">
+                完全离线 · 隐私优先的 macOS 语音输入
+            </h1>
+            <p id="hero-subtitle" class="text-2xl text-slate-600 max-w-2xl mx-auto">
+                按住快捷键说话，松开即输入。数据永不出设备。
+            </p>
         </div>
     </section>
 
-    <!-- Support Links -->
-    <section class="max-w-6xl mx-auto px-6 pb-20">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <a href="https://shanghai3168.github.io/privatevoice-dictation-support/" class="bg-white rounded-3xl border border-slate-200 p-7 hover:shadow-xl transition-shadow">
-                <div class="w-11 h-11 bg-blue-600 rounded-2xl flex items-center justify-center text-white mb-5">
-                    <i class="fa-solid fa-life-ring text-xl"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-2">支持中心</h3>
-                <p class="text-slate-600">查看帮助入口、支持方式和隐私说明。</p>
-            </a>
-            <a href="https://shanghai3168.github.io/privatevoice-dictation-support/support.html" class="bg-white rounded-3xl border border-slate-200 p-7 hover:shadow-xl transition-shadow">
-                <div class="w-11 h-11 bg-blue-600 rounded-2xl flex items-center justify-center text-white mb-5">
-                    <i class="fa-solid fa-circle-question text-xl"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-2">支持与反馈</h3>
-                <p class="text-slate-600">通过邮箱或 GitHub Issues 反馈问题。</p>
-            </a>
-            <a href="https://shanghai3168.github.io/privatevoice-dictation-support/privacy.html" class="bg-white rounded-3xl border border-slate-200 p-7 hover:shadow-xl transition-shadow">
-                <div class="w-11 h-11 bg-blue-600 rounded-2xl flex items-center justify-center text-white mb-5">
-                    <i class="fa-solid fa-shield-halved text-xl"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-2">隐私政策</h3>
-                <p class="text-slate-600">了解完全离线和本地数据处理承诺。</p>
-            </a>
+    <!-- Screenshots -->
+    <section class="max-w-7xl mx-auto px-6 py-8">
+        <h2 id="screenshot-title" class="text-4xl font-bold text-center mb-12">产品界面展示</h2>
+        
+        <div class="space-y-20" id="screenshots-container">
+            <!-- JS 动态加载 -->
         </div>
     </section>
 
     <script>
-        // 双语数据
+        let currentLang = 'zh';
+
         const content = {
             zh: {
-                title: "完全离线 · 隐私优先的 macOS 语音输入",
-                subtitle: "按住快捷键说话，松开即输入。数据永不出设备。",
+                heroTitle: "完全离线 · 隐私优先的 macOS 语音输入",
+                heroSubtitle: "按住快捷键说话，松开即输入。数据永不出设备。",
                 screenshotTitle: "产品界面展示",
                 langText: "English"
             },
             en: {
-                title: "Fully Offline · Privacy-First Voice Dictation for macOS",
-                subtitle: "Hold the hotkey to speak, release to input. Your data never leaves your device.",
+                heroTitle: "Fully Offline · Privacy-First Voice Dictation for macOS",
+                heroSubtitle: "Hold the hotkey to speak, release to input. Your data never leaves your device.",
                 screenshotTitle: "App Screenshots",
                 langText: "中文"
             }
         };
 
-        // 中英文图片列表
-        const images = {
+        // 中英文图片列表（根据你仓库实际文件名）
+        const screenshots = {
             zh: [
-                "06-任意应用即说即写-2880x1800.png",
                 "01-完全离线语音输入-2880x1800.png",
                 "02-四大本地模型-2880x1800.png",
                 "03-专属词库自适应-2880x1800.png",
                 "04-历史与CSV勘误-2880x1800.png",
-                "05-隐私优先-2880x1800.png"
+                "05-隐私优先-2880x1800.png",
+                "06-任意应用即说即写-2880x1800.png"
             ],
             en: [
-                "06-Dictate-in-Any-App-2880x1800.png",
                 "01-Fully-Offline-Voice-Dictation-2880x1800.png",
                 "02-Four-Local-Models-2880x1800.png",
                 "03-Personal-Dictionary-2880x1800.png",
                 "04-History-and-CSV-Corrections-2880x1800.png",
-                "05-Privacy-First-2880x1800.png"
+                "05-Privacy-First-2880x1800.png",
+                "06-Dictate-in-Any-App-2880x1800.png"
             ]
         };
 
-        let currentLang = 'zh';
-
-        function switchLanguage() {
-            currentLang = currentLang === 'zh' ? 'en' : 'zh';
-            
-            // 更新文字
-            document.getElementById('hero-title').textContent = content[currentLang].title;
-            document.getElementById('hero-subtitle').textContent = content[currentLang].subtitle;
-            document.getElementById('screenshot-title').textContent = content[currentLang].screenshotTitle;
-            document.getElementById('lang-text').textContent = content[currentLang].langText;
-            
-            // 更新图片
-            renderScreenshots();
-        }
-
-        function renderScreenshots() {
+        function renderScreenshots(lang) {
             const container = document.getElementById('screenshots-container');
             container.innerHTML = '';
             
-            const currentImages = images[currentLang];
-            const imageDir = currentLang === 'zh' ? 'images' : 'image-en';
+            const files = screenshots[lang];
+            const folder = lang === 'zh' ? 'images' : 'image-en';
             
-            currentImages.forEach(src => {
+            files.forEach(filename => {
                 const div = document.createElement('div');
                 div.innerHTML = `
-                    <img src="${imageDir}/${src}" 
-                         alt="Screenshot" 
-                         class="screenshot rounded-3xl shadow-2xl w-full">
+                    <img src="${folder}/${filename}" 
+                         alt="界面截图" 
+                         class="screenshot">
                 `;
                 container.appendChild(div);
             });
         }
 
-        // 初始化
-        renderScreenshots();
-    </script>
+        function switchLanguage() {
+            currentLang = currentLang === 'zh' ? 'en' : 'zh';
+            
+            document.getElementById('hero-title').textContent = content[currentLang].heroTitle;
+            document.getElementById('hero-subtitle').textContent = content[currentLang].heroSubtitle;
+            document.getElementById('screenshot-title').textContent = content[currentLang].screenshotTitle;
+            document.getElementById('lang-text').textContent = content[currentLang].langText;
+            
+            renderScreenshots(currentLang);
+        }
 
+        // 初始化
+        renderScreenshots('zh');
+    </script>
 </body>
 </html>
